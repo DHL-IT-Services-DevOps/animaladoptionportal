@@ -1,10 +1,12 @@
 name: Our Amazing Workflow! Team 3 is the best
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  
 
 jobs:
   build:
@@ -25,5 +27,5 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+#     - name: Test
+#       run: dotnet test --no-build --verbosity normal
