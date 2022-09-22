@@ -26,7 +26,8 @@ namespace AnimalAdoption.Web.Portal.FunctionalTests
             };
             _driver = new ChromeDriver(options);
         }
-
+        
+        [Ignore]
         [TestMethod]
         public void HomePage_LoadPage_LoadsAnimalsIn10Seconds()
         {
