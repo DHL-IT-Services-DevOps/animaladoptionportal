@@ -37,3 +37,6 @@ jobs:
 
           echo "Recursively listing all contents of the current directory"
           ls -R
+          
+    - name: publish
+      run: dotnet publish -o taaportal
