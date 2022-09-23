@@ -80,4 +80,23 @@ jobs:
         uses: Azure/login@v1.1
         with:
           creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
-        
+          
+#       - uses: azure/appservice-settings@v1
+#         with:
+#          app-name: 'AnimalAdoptionDev-2'
+#          app-settings-json: '${{ secrets.DEVPUBLISHSETTINGS2 }}' 
+
+
+      - name: Set Web App ACR authentication  
+      - uses: Azure/appservice-settings@v1    
+        with:   
+          app-name: 'AnimalAdoptionDev-2'    
+          app-settings-json: |
+           [
+           {
+            "name": "GlobalPassword",
+            "value": "${{ secrets.DEV_GLOBALPASSWORD }}",
+            "slotSetting": false
+           }
+           ]
+
