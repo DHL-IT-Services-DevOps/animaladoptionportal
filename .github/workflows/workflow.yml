@@ -124,6 +124,13 @@ jobs:
           with:
            name: bicep
            path: ${{ github.workspace }}/deploy.bicep/
+           
+        - name: deploy from bicep
+          uses: azure/arm-deploy@v1
+          with:
+           resourceGroupName: DevOpsGitHub-2022-09-22-team-03-prod
+           template: ${{ github.workspace }}/deploy.bicep/
+           parameters: tenantGuid=ab5eb3d0-6067-40ee-b4c0-a2ce05dbf039 appServicePlanName=ProdAnimalAdoption keyVaultName=prodanimalkeyvault webAppName=prodwebanimaladoption resourceGroupServicePrincipalManagedApplicationObjectId=82eec69e-37a8-4e11-a274-dffd0985dc2d
          
 
            
