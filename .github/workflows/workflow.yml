@@ -9,44 +9,53 @@ on:
   
 
 jobs:
-#   build:
+  build:
 
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - uses: actions/checkout@v3
+    steps:
+    - uses: actions/checkout@v3
     
-#     - name: Setup .NET 
-#       uses: actions/setup-dotnet@v2
-#       with:
-#         dotnet-version: 3.1.x
+    - name: Setup .NET 
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 3.1.x
         
-#     - name: Restore dependencies
-#       run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
       
-#     - name: Build
-#       run: dotnet build --configuration Release --no-restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
       
-#     - name: Test
-#       run: dotnet test --verbosity normal
+    - name: Test
+      run: dotnet test --verbosity normal
       
-#     - name: List out directory contents
-#       run: |
-#           echo "Listing the contents of the GitHub workspace directory"
-#           ls ${{ github.workspace }}
+    - name: List out directory contents
+      run: |
+          echo "Listing the contents of the GitHub workspace directory"
+          ls ${{ github.workspace }}
 
-#           echo "Recursively listing all contents of the current directory"
-#           ls -R
+          echo "Recursively listing all contents of the current directory"
+          ls -R
           
-#     - name: Publish portal project in Release mode
-#       run: dotnet publish ${{ github.workspace }}/AnimalAdoption.Web.Portal/AnimalAdoption.Web.Portal.csproj --configuration Release --no-build --output ./taa-portal/
+    - name: Publish portal project in Release mode
+      run: dotnet publish ${{ github.workspace }}/AnimalAdoption.Web.Portal/AnimalAdoption.Web.Portal.csproj --configuration Release --no-build --output ./taa-portal/
       
-#     - name: Upload a Build Artifact for Web Portal
-#       uses: actions/upload-artifact@v2.1.3
-#       with:
-#         name: portal
-#         path: ${{ github.workspace }}/taa-portal/
-#         if-no-files-found: error
+    - name: Upload a Build Artifact for Web Portal
+      uses: actions/upload-artifact@v2.1.3
+      with:
+        name: portal
+        path: ${{ github.workspace }}/taa-portal/
+        if-no-files-found: error
+        
+    - name: Upload bicep
+      uses: actions/upload-artifact@v2.1.3
+      with:
+        name: bicep
+        path: ${{ github.workspace }}/deploy.bicep/
+        if-no-files-found: error
+        
+        
         
 #   deploy:
 
