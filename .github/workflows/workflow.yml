@@ -79,35 +79,35 @@ jobs:
 #          publish-profile: ${{ secrets.DEVPUBLISHSETTINGS2 }}
 #          package : .
          
-  application_settings:
+#   application_settings:
 
-    runs-on: windows-latest
-#     needs: deploy       
+#     runs-on: windows-latest
+# #     needs: deploy       
     
-    steps:
-      - name: login with SP
-        uses: Azure/login@v1.1
-        with:
-          creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
-      - name : get from keyvault
-        uses: Azure/get-keyvault-secrets@v1
-        with: 
-          keyvault: "animalkeyvault"
-          secrets: 'Globalpassword'
-        id: myGetSecretAction
+#     steps:
+#       - name: login with SP
+#         uses: Azure/login@v1.1
+#         with:
+#           creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
+#       - name : get from keyvault
+#         uses: Azure/get-keyvault-secrets@v1
+#         with: 
+#           keyvault: "animalkeyvault"
+#           secrets: 'Globalpassword'
+#         id: myGetSecretAction
 
-      - name: Set Web App ACR authentication  
-        uses: azure/appservice-settings@v1    
-        with:   
-          app-name: 'AnimalAdoptionDev-2'    
-          app-settings-json: |
-           [
-           {
-            "name": "GlobalPassword",
-            "value": "${{ steps.myGetSecretAction.outputs.Globalpassword }}",
-            "slotSetting": false
-           }
-           ]
+#       - name: Set Web App ACR authentication  
+#         uses: azure/appservice-settings@v1    
+#         with:   
+#           app-name: 'AnimalAdoptionDev-2'    
+#           app-settings-json: |
+#            [
+#            {
+#             "name": "GlobalPassword",
+#             "value": "${{ steps.myGetSecretAction.outputs.Globalpassword }}",
+#             "slotSetting": false
+#            }
+#            ]
 
   bicep_provisioning:
 
@@ -155,32 +155,32 @@ jobs:
          publish-profile: ${{ secrets.prod_published_settings2 }}
          package : .
          
-  application_settings_prod:
-    needs: deployprod
-    runs-on: windows-latest 
+#   application_settings_prod:
+#     needs: deployprod
+#     runs-on: windows-latest 
     
-    steps:
-      - name: login with SP
-        uses: Azure/login@v1.1
-        with:
-          creds: ${{secrets.PROD_PUBLISHED_SETTINGS}}
-      - name : get from keyvault
-        uses: Azure/get-keyvault-secrets@v1
-        with: 
-          keyvault: "prodanimalkeyvault"
-          secrets: 'GlobalPassword'
-        id: myGetSecretAction1
+#     steps:
+#       - name: login with SP
+#         uses: Azure/login@v1.1
+#         with:
+#           creds: ${{secrets.PROD_PUBLISHED_SETTINGS}}
+#       - name : get from keyvault
+#         uses: Azure/get-keyvault-secrets@v1
+#         with: 
+#           keyvault: "prodanimalkeyvault"
+#           secrets: 'GlobalPassword'
+#         id: myGetSecretAction1
 
-      - name: Set Web App ACR authentication  
-        uses: azure/appservice-settings@v1    
-        with:   
-          app-name: 'prodwebanimaladoption'    
-          app-settings-json: |
-           [
-           {
-            "name": "GlobalPassword",
-            "value": "${{ steps.myGetSecretAction1.outputs.Globalpassword }}",
-            "slotSetting": false
-           }
-           ]
+#       - name: Set Web App ACR authentication  
+#         uses: azure/appservice-settings@v1    
+#         with:   
+#           app-name: 'prodwebanimaladoption'    
+#           app-settings-json: |
+#            [
+#            {
+#             "name": "GlobalPassword",
+#             "value": "${{ steps.myGetSecretAction1.outputs.Globalpassword }}",
+#             "slotSetting": false
+#            }
+#            ]
            
