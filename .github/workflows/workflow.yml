@@ -79,6 +79,5 @@ jobs:
       - name: login with SP
         uses: Azure/login@v1.1
         with:
-#           creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
-          creds: ${{secrets.SPTEST}}
+          creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
         
