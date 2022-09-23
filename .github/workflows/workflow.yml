@@ -109,3 +109,21 @@ jobs:
            }
            ]
 
+  bicep_provisioning:
+
+    runs-on: windows-latest
+    
+    steps:
+        - name: login with SP
+          uses: Azure/login@v1.1
+          with:
+           creds: ${{secrets.PROD_PUBLISHED_SETTINGS}}
+         
+        - name: Download bicep
+          uses: actions/download-artifact@v2
+          with:
+           name: bicep
+           path: ${{ github.workspace }}/deploy.bicep/
+         
+
+           
