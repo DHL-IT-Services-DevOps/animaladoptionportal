@@ -47,3 +47,14 @@ jobs:
         name: portal
         path: ${{ github.workspace }}/taa-portal/
         if-no-files-found: error
+        
+  deploy:
+   
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Download Artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+         name: portal
+        
