@@ -76,8 +76,8 @@ jobs:
     needs: deploy       
     
     steps:
-      - name: login via Az module
-        uses: azure/login@v1
+      - name: login with SP
+        uses: azure/login@v1.1
         with:
           creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE2}}
         
