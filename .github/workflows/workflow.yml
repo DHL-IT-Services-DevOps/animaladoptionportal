@@ -80,12 +80,12 @@ jobs:
         uses: Azure/login@v1.1
         with:
           creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
-          
-#       - uses: azure/appservice-settings@v1
-#         with:
-#          app-name: 'AnimalAdoptionDev-2'
-#          app-settings-json: '${{ secrets.DEVPUBLISHSETTINGS2 }}' 
-
+      - name : get from keyvault
+        uses: Azure/get-keyvault-secrets@v1
+        with: 
+          keyvault: "animalkeyvault"
+          secrets: 'Globalpassword'
+        id: myGetSecretAction
 
       - name: Set Web App ACR authentication  
         uses: azure/appservice-settings@v1    
@@ -95,7 +95,7 @@ jobs:
            [
            {
             "name": "GlobalPassword",
-            "value": "${{ secrets.DEV_GLOBALPASSWORD }}",
+            "value": "${{ steps.myGetSecretAction.outputs.containerUsername }}",
             "slotSetting": false
            }
            ]
