@@ -79,5 +79,5 @@ jobs:
       - name: login via Az module
         uses: azure/login@v1
         with:
-          creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE}}
+          creds: ${{secrets.DEV_SERVICE_PRINCIPAL_AZURE2}}
         
