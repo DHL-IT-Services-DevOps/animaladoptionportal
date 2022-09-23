@@ -66,8 +66,8 @@ jobs:
         uses: azure/webapps-deploy@v2
         id : deploy-to-webapp
         with:
-         app-name: "AnimalAdoptionDev"
-         publish-profile: ${{ secrets.DEVPUBLISHSETTINGS }}
+         app-name: "AnimalAdoptionDev-2"
+         publish-profile: ${{ secrets.DEVPUBLISHSETTINGS2 }}
          package : .
          
         
