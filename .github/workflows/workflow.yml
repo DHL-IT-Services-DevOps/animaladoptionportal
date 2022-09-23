@@ -131,6 +131,27 @@ jobs:
            resourceGroupName: DevOpsGitHub-2022-09-22-team-03-prod
            template: ./bicep-template/deploy.bicep
            parameters: tenantGuid=ab5eb3d0-6067-40ee-b4c0-a2ce05dbf039 appServicePlanName=ProdAnimalAdoption keyVaultName=prodanimalkeyvault webAppName=prodwebanimaladoption resourceGroupServicePrincipalManagedApplicationObjectId=82eec69e-37a8-4e11-a274-dffd0985dc2d
-         
+           deploymentMode: incremental         
 
+  deployprod:
+
+    runs-on: windows-latest
+    needs: build
+    environment : 
+      name : "production"
+      url : ${{ steps.deploy-to-webapp.output.webapp-url }}
+      
+    steps:
+      - name: Download Artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+         name: portal
+       
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        id : deploy-to-webapp
+        with:
+         app-name: "prodwebanimaladoption"
+         publish-profile: ${{ secrets.prod_published_settings2 }}
+         package : .
            
