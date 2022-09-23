@@ -134,10 +134,10 @@ jobs:
            deploymentMode: incremental         
 
   deployprod:
+    needs: [build, bicep_provisioning]
 
     runs-on: windows-latest
-    needs: build
-    environment : 
+    environment: 
       name : "production"
       url : ${{ steps.deploy-to-webapp.output.webapp-url }}
       
