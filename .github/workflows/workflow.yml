@@ -95,7 +95,7 @@ jobs:
            [
            {
             "name": "GlobalPassword",
-            "value": "${{ steps.myGetSecretAction.outputs.containerUsername }}",
+            "value": "${{ steps.myGetSecretAction.outputs.Globalpassword }}",
             "slotSetting": false
            }
            ]
